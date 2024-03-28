@@ -41,6 +41,14 @@ public class TareaService implements ITareaService {
             throw ex;
         }
     }
+    @Override
+    public void EditarTarea(EditarTareaDTO request) {
+        try{
+            iTareaRepository.EditarTarea(request);
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
 
 
 }

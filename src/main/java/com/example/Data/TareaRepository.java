@@ -31,6 +31,11 @@ public class TareaRepository implements ITareaRepository{
         List<Tarea> tareas = jdbcTemplate.query(sql,new Object[]{request.IdTarea}, BeanPropertyRowMapper.newInstance(Tarea.class));
         return tareas;
     }
+    @Override
+    public void EditarTarea(EditarTareaDTO request) {
+        String sql = "EXEC pa_u_ActualizarTarea ?, ?, ?";
+        jdbcTemplate.update(sql, new Object[]{request.IdTarea, request.DescripcionTarea, request.IdEstatus});
+    }
 
 
 }

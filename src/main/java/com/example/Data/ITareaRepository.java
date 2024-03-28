@@ -10,5 +10,6 @@ public interface ITareaRepository {
     public List<Tarea> ObtenerTareas();
 
     public List<Tarea> ObtenerTareaPorId(ObtenerTareaPorIdDTO request);
+    public void EditarTarea(EditarTareaDTO request);
 
 }
