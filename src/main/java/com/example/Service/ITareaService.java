@@ -8,5 +8,6 @@ public interface ITareaService {
     public void CrearTarea(CrearTareaDTO request);
     public List<Tarea> ObtenerTareas();
 
+    public List<Tarea> ObtenerTareaPorId(ObtenerTareaPorIdDTO request);
 
 }

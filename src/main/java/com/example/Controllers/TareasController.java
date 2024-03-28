@@ -56,5 +56,37 @@ public class TareasController {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
+    @PostMapping(value="/obtener-tarea-por-id")
+    public ResponseEntity<HttpResponseHandler> ObtenerTareaPorId(@RequestBody ObtenerTareaPorIdDTO request){
+        try{
+            var tareas = iTareaService.ObtenerTareaPorId(request);
+            if(tareas.isEmpty()){
+                HttpResponseHandler response = HttpResponseHandler.builder()
+                        .Success(false)
+                        .Error("")
+                        .Message("La tarea no fue encontrada.")
+                        .Data(tareas)
+                        .build();
+                return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+            }else{
+                HttpResponseHandler response = HttpResponseHandler.builder()
+                        .Success(true)
+                        .Error("")
+                        .Message("Tarea obtenida satisfactoriamente.")
+                        .Data(tareas)
+                        .build();
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            }
+
+        }catch (Exception ex){
+            HttpResponseHandler response = HttpResponseHandler.builder()
+                    .Success(false)
+                    .Error(ex.getMessage())
+                    .Message("Ocurrio un error al obtener la tarea.")
+                    .Data(null)
+                    .build();
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }

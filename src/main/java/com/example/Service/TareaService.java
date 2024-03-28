@@ -32,6 +32,15 @@ public class TareaService implements ITareaService {
             throw ex;
         }
     }
+    @Override
+    public List<Tarea> ObtenerTareaPorId(ObtenerTareaPorIdDTO request) {
+        try{
+            var tarea = iTareaRepository.ObtenerTareaPorId(request);
+            return tarea;
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
 
 
 }

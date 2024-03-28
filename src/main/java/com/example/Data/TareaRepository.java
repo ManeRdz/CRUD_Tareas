@@ -25,6 +25,12 @@ public class TareaRepository implements ITareaRepository{
         var tareas = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Tarea.class));
         return tareas;
     }
+    @Override
+    public List<Tarea> ObtenerTareaPorId(ObtenerTareaPorIdDTO request) {
+        String sql = "EXEC pa_s_ObtenerTareaPorId ?";
+        List<Tarea> tareas = jdbcTemplate.query(sql,new Object[]{request.IdTarea}, BeanPropertyRowMapper.newInstance(Tarea.class));
+        return tareas;
+    }
 
 
 }
