@@ -122,5 +122,39 @@ public class TareasController {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
+    @DeleteMapping(value="/eliminar-tarea")
+    public ResponseEntity<HttpResponseHandler> EliminarTarea(@RequestBody EliminarTareaDTO request){
+        try{
+            ObtenerTareaPorIdDTO obtenerTarea = new ObtenerTareaPorIdDTO();
+            obtenerTarea.setIdTarea(request.IdTarea);
+            var tarea = iTareaService.ObtenerTareaPorId(obtenerTarea);
+            if(tarea.isEmpty()){
+                HttpResponseHandler response = HttpResponseHandler.builder()
+                        .Success(false)
+                        .Error("")
+                        .Message("La tarea no fue encontrada.")
+                        .Data(null)
+                        .build();
+                return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+            }else {
+                iTareaService.EliminarTarea(request);
+                HttpResponseHandler response = HttpResponseHandler.builder()
+                        .Success(true)
+                        .Error("")
+                        .Message("Tarea eliminada correctamente")
+                        .Data(null)
+                        .build();
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            }
+        }catch (Exception ex){
+            HttpResponseHandler response = HttpResponseHandler.builder()
+                    .Success(false)
+                    .Error(ex.getMessage())
+                    .Message("Ocurrio un error al eliminar la tarea.")
+                    .Data(null)
+                    .build();
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }

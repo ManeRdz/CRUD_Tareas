@@ -50,5 +50,14 @@ public class TareaService implements ITareaService {
         }
     }
 
+    @Override
+    public void EliminarTarea(EliminarTareaDTO request) {
+        try{
+            iTareaRepository.EliminarTarea(request);
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
+
 
 }

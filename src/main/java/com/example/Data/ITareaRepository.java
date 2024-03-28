@@ -11,5 +11,6 @@ public interface ITareaRepository {
 
     public List<Tarea> ObtenerTareaPorId(ObtenerTareaPorIdDTO request);
     public void EditarTarea(EditarTareaDTO request);
+    public void EliminarTarea(EliminarTareaDTO request);
 
 }

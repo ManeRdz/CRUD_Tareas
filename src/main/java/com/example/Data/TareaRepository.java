@@ -36,6 +36,11 @@ public class TareaRepository implements ITareaRepository{
         String sql = "EXEC pa_u_ActualizarTarea ?, ?, ?";
         jdbcTemplate.update(sql, new Object[]{request.IdTarea, request.DescripcionTarea, request.IdEstatus});
     }
+    @Override
+    public void EliminarTarea(EliminarTareaDTO request) {
+        String sql = "EXEC pa_d_BorrarTarea ?";
+        jdbcTemplate.update(sql, new Object[]{request.IdTarea});
+    }
 
 
 }
